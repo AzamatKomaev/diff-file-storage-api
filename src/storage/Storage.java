@@ -10,7 +10,9 @@ import model.File;
  */
 public interface Storage {
     File[] getAllFiles();
+    File getFileByName(String name);
     void createFile(File f);
+
 
     // some another methods
 }

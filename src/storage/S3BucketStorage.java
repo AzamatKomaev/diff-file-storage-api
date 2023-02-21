@@ -14,7 +14,17 @@ public class S3BucketStorage implements Storage {
 
     @Override
     public File[] getAllFiles() {
-        return (File[]) files.toArray();
+        File[] fileArray = new File[files.size()];
+        files.toArray(fileArray);
+        return fileArray;
+    }
+
+    @Override
+    public File getFileByName(String name) {
+        return files.stream()
+            .filter(file -> file.getName().equals(name))
+            .findFirst()
+            .orElse(null);
     }
 
     @Override

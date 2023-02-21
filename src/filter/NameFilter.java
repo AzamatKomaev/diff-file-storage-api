@@ -5,6 +5,7 @@ import storage.Storage;
 import model.File;
 
 import java.util.Arrays;
+import java.util.List;
 
 
 public class NameFilter extends Filter {
@@ -14,8 +15,14 @@ public class NameFilter extends Filter {
 
     @Override
     public File[] filter(String value) {
-        return (File[]) Arrays.stream(storage.getAllFiles())
-                              .filter(file -> file.getName().equals(value))
-                              .toArray();
+        File[] filteredArray;
+
+        List<File> filteredList = Arrays.stream(storage.getAllFiles())
+                                         .filter(file -> file.getName().equals(value))
+                                         .toList();
+
+        filteredArray = new File[filteredList.size()];
+        filteredList.toArray(filteredArray);
+        return filteredArray;
     }
 }

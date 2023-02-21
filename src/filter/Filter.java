@@ -4,6 +4,8 @@ import storage.Storage;
 
 import model.File;
 
+import java.util.List;
+
 public abstract class Filter {
     protected Storage storage;
 
@@ -11,5 +13,5 @@ public abstract class Filter {
         this.storage = storage;
     }
 
-    abstract File[] filter(String value);
+    public abstract File[] filter(String value);
 }

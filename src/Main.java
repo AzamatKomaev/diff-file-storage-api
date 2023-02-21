@@ -1,5 +1,8 @@
+import test.GtMegabyteSizeFilterTest;
+
 class Main {
     public static void main(String[] args) {
-        System.out.println("hello world");
+        GtMegabyteSizeFilterTest test1 = new GtMegabyteSizeFilterTest();
+        test1.testGettingFilesWhereSizeGreaterThan1MB();
     }
 }
