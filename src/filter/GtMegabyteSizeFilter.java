@@ -7,21 +7,21 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GtMegabyteSizeFilter extends Filter {
-    public GtMegabyteSizeFilter(Storage storage) {
-        super(storage);
+    public GtMegabyteSizeFilter(String value) {
+        super(value);
     }
 
     @Override
-    public File[] filter(String value) {
-        File[] filteredArray;
+    public Filter filter(Filter filter) {
         double sizeInBytes = Math.round(Double.parseDouble(value) * 1024 * 1024);
 
-        List<File> filteredList = Arrays.stream(storage.getAllFiles())
+        List<File> filteredList = Arrays.stream(filter.getFiles())
                                         .filter(file -> file.getSizeInBytes() > sizeInBytes)
                                         .toList();
 
-        filteredArray = new File[filteredList.size()];
-        filteredList.toArray(filteredArray);
-        return filteredArray;
+        System.out.println("I am works in mg");
+        this.files = new File[filteredList.size()];
+        filteredList.toArray(this.files);
+        return this;
     }
 }

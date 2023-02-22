@@ -1,26 +1,24 @@
 package filter;
 
 import model.File;
-import storage.Storage;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class ExtensionFilter extends Filter {
-    public ExtensionFilter(Storage storage) {
-        super(storage);
+    public ExtensionFilter(String value) {
+        super(value);
     }
 
     @Override
-    public File[] filter(String value) {
-        File[] filteredArray;
-
-        List<File> filteredList = Arrays.stream(storage.getAllFiles())
+    public Filter filter(Filter filter) {
+        List<File> filteredList = Arrays.stream(filter.getFiles())
                                          .filter(file -> file.getName().endsWith(value))
                                          .toList();
 
-        filteredArray = new File[filteredList.size()];
-        filteredList.toArray(filteredArray);
-        return filteredArray;
+        System.out.println("I am works in extension");
+        this.files = new File[filteredList.size()];
+        filteredList.toArray(this.files);
+        return this;
     }
 }
